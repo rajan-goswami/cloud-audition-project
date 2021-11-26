@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  message-management-service:
+    build: .
+    image: message-management-service
+    environment:
+      - MONGODB_URL=mongodb://mongodb:27017/cloud-audition-db
+    ports:
+      - '3000:3000'
+    depends_on:
+      - mongodb
+    volumes:
+      - .:/usr/src/message-management-service
+    networks:
+      - cloud-audition-network
+
+  mongodb:
+    image: mongo:4.2.1-bionic
+    ports:
+      - '27017:27017'
+    volumes:
+      - dbdata:/data/db
+    networks:
+      - cloud-audition-network
+
+volumes:
+  dbdata:
+
+networks:
+  cloud-audition-network:
+    driver: bridge

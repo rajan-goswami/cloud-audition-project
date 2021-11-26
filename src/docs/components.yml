@@ -1,0 +1,34 @@
+components:
+  schemas:
+    Message:
+      type: object
+      properties:
+        id:
+          type: string
+        content:
+          type: string
+        isPalindrome:
+          type: boolean
+      example:
+        id: 61991240f80c6400b6783719
+        content: malayalam
+        isPalindrome: true
+
+    Error:
+      type: object
+      properties:
+        code:
+          type: number
+        message:
+          type: string
+
+  responses:
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 404
+            message: Not found
