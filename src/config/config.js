@@ -9,8 +9,13 @@ module.exports = {
   mongoose: {
     url: process.env.MONGODB_URL + (process.env.NODE_ENV === 'test' ? '-test' : ''),
     options: {
+      // To avoid deprecation warnings from the MongoDB driver regarding createIndex()
       useCreateIndex: true,
+
+      // enforces a port in your mongodb connection string
       useNewUrlParser: true,
+
+      // Using the MongoDB driver's new connection management engine
       useUnifiedTopology: true,
     },
   },

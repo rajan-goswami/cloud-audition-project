@@ -1,9 +1,7 @@
-const mongoose = require('mongoose');
 const httpStatus = require('http-status');
 const Message = require('../models/message.model');
 const ApiError = require('../utils/ApiError');
 const { checkPalindrome } = require('../utils/text.util');
-const { logger } = require('../config/logger');
 
 /**
  * Create a message
@@ -50,13 +48,16 @@ const updateMessageById = async (messageId, updateBody) => {
     throw new ApiError(httpStatus.NOT_FOUND, 'Message not found');
   }
   Object.assign(message, updateBody);
+
+  // set isPalindrome flag if given message is palindrome
   message.isPalindrome = checkPalindrome(message.content);
+
   await message.save();
 
   return message;
 };
 
-/*const updateMessageById = async (messageId, updateBody) => {
+/* const updateMessageById = async (messageId, updateBody) => {
   // Start Mongodb transaction session
   const session = await mongoose.startSession();
   try {
@@ -84,13 +85,13 @@ const updateMessageById = async (messageId, updateBody) => {
     // Always end session
     session.endSession();
   }
-};*/
+}; */
 
 /**
  * Delete message by id
  *
  * @param {ObjectId} messageId
- * @returns {Promise<Message>}
+ * @returns {Promise<Void>}
  */
 const deleteMessageById = async (messageId) => {
   const message = await getMessageById(messageId);

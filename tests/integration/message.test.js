@@ -117,7 +117,7 @@ describe('Message routes', () => {
       await insertMessages([messageOne]);
 
       await request(app)
-        .get(`/v1/messages/22222222`)
+        .get('/v1/messages/22222222')
         .send()
         .expect(httpStatus.BAD_REQUEST);
     });
@@ -149,7 +149,7 @@ describe('Message routes', () => {
       await insertMessages([messageOne]);
 
       await request(app)
-        .delete(`/v1/messages/22222222`)
+        .delete('/v1/messages/22222222')
         .send()
         .expect(httpStatus.BAD_REQUEST);
     });
@@ -208,7 +208,7 @@ describe('Message routes', () => {
       await insertMessages([messageOne]);
 
       await request(app)
-        .patch(`/v1/messages/22222222`)
+        .patch('/v1/messages/22222222')
         .send()
         .expect(httpStatus.BAD_REQUEST);
     });

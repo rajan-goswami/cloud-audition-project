@@ -1,7 +1,6 @@
 const express = require('express');
-const { Validator } = require("express-json-validator-middleware");
-const { createMessageSchema, updateMessageSchema, messageIdSchema }
-  = require('../../validations/requests.schema');
+const { Validator } = require('express-json-validator-middleware');
+const { createMessageSchema, updateMessageSchema, messageIdSchema } = require('../../validations/requests.schema');
 const messageController = require('../../controllers/message.controller');
 
 const router = express.Router();
@@ -15,7 +14,8 @@ router
 router
   .route('/:messageId')
   .get(validate({ params: messageIdSchema }), messageController.getMessage)
-  .patch(validate({ body: updateMessageSchema, params: messageIdSchema }), messageController.updateMessage)
+  .patch(validate({ body: updateMessageSchema, params: messageIdSchema }),
+    messageController.updateMessage)
   .delete(validate({ params: messageIdSchema }), messageController.deleteMessage);
 
 module.exports = router;

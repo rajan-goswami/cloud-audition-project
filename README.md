@@ -109,3 +109,9 @@ To view the list of available APIs and their specifications, run the server and 
 `DELETE /v1/messages/:messageId` - delete a message
 
 ## Future scope
+
+- Deployment on [minikube](https://minikube.sigs.k8s.io/docs/start/) for local testing
+- CI pipeline
+- Setup monitoring and alerting of service using [prometheus](https://prometheus.io/) and [grafana](https://grafana.com/)
+- API security
+- Load testing using [k6](https://k6.io/)
